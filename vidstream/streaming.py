@@ -87,8 +87,6 @@ class StreamingServer:
         self.__block = threading.Lock()
         self.__server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.__init_socket()
-        # this is yaniv adding 
-        address = self.__server_socket.getsockname()
 
     def __init_socket(self):
         """
@@ -182,6 +180,9 @@ class StreamingServer:
                 connection.close()
                 self.__used_slots -= 1
                 break
+    
+    def getServerAddress(self):
+        return self.__server_socket.getsockname()
 
 
 class StreamingClient:
